@@ -1,0 +1,55 @@
+<template>
+    <div class="slds-form-element" style={componentStyle}>
+        <div class="slds-form-element__control">
+        <div class="slds-combobox_container">
+        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open" aria-expanded="true" aria-haspopup="listbox" role="combobox">
+        <div onclick={handleSelectBoxClick} class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none" style="color: rgb(84, 105, 141); font-size: 12px; background-color: white; padding: 6px 32px 6px .5rem;border: 1px solid rgb(230, 236, 242); border-radius: 4px;">
+            <p style="">{label}</p>
+            <p style="text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;">{selectedItems}</p>
+
+        <span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right">
+        <lightning-icon icon-name="utility:switch" alternative-text="Approved" title="Approved" size="xx-small"></lightning-icon>
+
+        </span>
+
+        </div>
+        <template if:true={IsListBoxVisible}>
+            <div id="listbox-id-7" class="slds-dropdown slds-dropdown_length-6 slds-dropdown_fluid" role="listbox">
+                <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+            <template for:index="indexVal" for:each={itemListData} for:item="itemData">
+                <li key={itemData.index} role="presentation" class="slds-listbox__item" data-id={itemData.index} onclick={handleItemClick}>
+                    <div aria-checked="true" class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small slds-is-selected" role="option">
+                    
+                        <span class="slds-media__figure slds-listbox__option-icon">
+                            <template if:true={itemData.isSelected}>
+                            <span class="slds-icon_container slds-icon-utility-check slds-current-color">
+                    
+                            <lightning-icon icon-name="utility:check" alternative-text="Approved" title="Approved" size="xx-small"></lightning-icon>
+                            </span>
+                        </template>  
+                            </span>
+                                         
+                    <span class="slds-media__body">
+                    <span class="slds-truncate" title="Titles">{itemData.title}</span>
+                    </span>
+                    </div>
+                    </li>
+            </template>          
+
+                </ul>
+                <footer class="slds-popover__footer slds-popover__footer_form" style="text-align: right; background: white; border-top: none;">
+
+                    <button class="slds-button slds-button_neutral" onclick={handleCancelButtonClick}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={handleApplyButtonClick}>Apply</button>
+                </footer>
+                </div>
+                                
+        </template>
+
+        </div>
+        </div>
+        </div>
+        </div>
+</template>
